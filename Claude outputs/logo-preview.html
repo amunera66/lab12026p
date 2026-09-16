@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>banco2025 — logo preview</title>
+<style>
+  :root {
+    --navy-deep: #0a1930;
+    --navy-mid: #14294d;
+    --blue-accent: #2f6fed;
+    --blue-bright: #4f8cff;
+    --gold: #e8b84b;
+    --surface-white: #ffffff;
+    --text-white: #f4f7fb;
+    --text-muted: #9fb0c9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Inter, Arial, sans-serif;
+    background: #0d1420;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 40px;
+    justify-content: center;
+  }
+  .card {
+    width: 280px;
+    border-radius: 24px;
+    padding: 28px 22px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  }
+  .card.dark {
+    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy-mid) 55%, var(--blue-accent) 130%);
+    color: var(--text-white);
+  }
+  .card.light {
+    background: var(--surface-white);
+    color: #10213f;
+  }
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .brand-name {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+  }
+  .brand-name span { color: var(--gold); }
+  .balance-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .card.light .balance-label { color: #7c8aa5; }
+  .balance {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .action {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 12px;
+  }
+  .card.light .action { background: #f1f4fa; color: #10213f; }
+  .action .ico { font-size: 16px; display:block; margin-bottom: 4px; }
+  .tx {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+  }
+  .card.light .tx { border-bottom: 1px solid #eef1f6; }
+  .tx-name { font-weight: 600; }
+  .tx-sub { color: var(--text-muted); font-size: 11px; }
+  .card.light .tx-sub { color: #8a97ad; }
+  .amt-out { color: #ff8a8a; }
+  .amt-in { color: #6bd68a; }
+  .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin: 18px 0 8px; }
+
+  .logo-standalone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 30px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card dark">
+    <div class="brand-row">
+      <svg width="34" height="34" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#14294d"/>
+            <stop offset="100%" stop-color="#2f6fed"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="98" fill="url(#badgeGrad)"/>
+        <path d="M 62 168 Q 62 128 100 122 Q 138 128 138 168 Z" fill="#f4f7fb"/>
+        <circle cx="100" cy="96" r="27" fill="#f4f7fb"/>
+        <ellipse cx="100" cy="79" rx="36" ry="7" fill="#f4f7fb"/>
+        <rect x="77" y="48" width="46" height="30" rx="7" fill="#f4f7fb"/>
+        <rect x="77" y="70" width="46" height="8" fill="#14294d"/>
+        <path d="M 100 122 L 108 140 L 100 168 L 92 140 Z" fill="#e8b84b"/>
+      </svg>
+      <div class="brand-name">banco<span>2025</span></div>
+    </div>
+    <div class="balance-label">Saldo disponible</div>
+    <div class="balance">$ 900.00</div>
+    <div class="actions">
+      <div class="action"><span class="ico">↑</span>Enviar</div>
+      <div class="action"><span class="ico">＋</span>Nueva cuenta</div>
+      <div class="action"><span class="ico">≡</span>Historial</div>
+    </div>
+    <div class="section-title">Transacciones</div>
+    <div class="tx">
+      <div><div class="tx-name">María Gómez</div><div class="tx-sub">Transferencia enviada</div></div>
+      <div class="amt-out">-$100.00</div>
+    </div>
+    <div class="tx">
+      <div><div class="tx-name">Juan Pérez</div><div class="tx-sub">Transferencia recibida</div></div>
+      <div class="amt-in">+$100.00</div>
+    </div>
+  </div>
+
+  <div class="card light">
+    <div class="brand-row">
+      <svg width="30" height="30" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="badgeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#14294d"/>
+            <stop offset="100%" stop-color="#2f6fed"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="98" fill="url(#badgeGrad2)"/>
+        <path d="M 62 168 Q 62 128 100 122 Q 138 128 138 168 Z" fill="#f4f7fb"/>
+        <circle cx="100" cy="96" r="27" fill="#f4f7fb"/>
+        <ellipse cx="100" cy="79" rx="36" ry="7" fill="#f4f7fb"/>
+        <rect x="77" y="48" width="46" height="30" rx="7" fill="#f4f7fb"/>
+        <rect x="77" y="70" width="46" height="8" fill="#14294d"/>
+        <path d="M 100 122 L 108 140 L 100 168 L 92 140 Z" fill="#e8b84b"/>
+      </svg>
+      <div class="brand-name" style="color:#10213f">banco<span>2025</span></div>
+    </div>
+    <div class="section-title" style="margin-top:0">Nueva cuenta</div>
+    <div style="font-size:13px;color:#8a97ad;margin-bottom:14px;">Formulario de creación de cliente, tarjetas blancas sobre fondo claro — mismo acento azul/dorado.</div>
+    <div class="action" style="text-align:left;padding:12px 14px;margin-bottom:8px;">Nombre — Juan</div>
+    <div class="action" style="text-align:left;padding:12px 14px;margin-bottom:8px;">Cuenta — 123456789</div>
+    <div class="action" style="text-align:left;padding:12px 14px;">Saldo inicial — $1000.00</div>
+  </div>
+
+  <div class="logo-standalone">
+    <svg width="120" height="120" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="badgeGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#14294d"/>
+          <stop offset="100%" stop-color="#2f6fed"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="98" fill="url(#badgeGrad3)"/>
+      <path d="M 62 168 Q 62 128 100 122 Q 138 128 138 168 Z" fill="#f4f7fb"/>
+      <circle cx="100" cy="96" r="27" fill="#f4f7fb"/>
+      <ellipse cx="100" cy="79" rx="36" ry="7" fill="#f4f7fb"/>
+      <rect x="77" y="48" width="46" height="30" rx="7" fill="#f4f7fb"/>
+      <rect x="77" y="70" width="46" height="8" fill="#14294d"/>
+      <path d="M 100 122 L 108 140 L 100 168 L 92 140 Z" fill="#e8b84b"/>
+    </svg>
+    <div style="color:#f4f7fb;font-family:sans-serif;font-size:13px;">Logo aislado (para favicon / navbar)</div>
+  </div>
+
+</body>
+</html>

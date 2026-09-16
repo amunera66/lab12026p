@@ -2,7 +2,6 @@ package com.udea.lab12026p.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Generated;
 
 import java.time.LocalDateTime;
 
@@ -35,46 +34,6 @@ public class Transaction {
         this.senderAccountNumber = senderAccountNumber;
         this.receiverAccountNumber = receiverAccountNumber;
         this.amount = amount;
-        this.timestamp = timestamp;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSenderAccountNumber() {
-        return senderAccountNumber;
-    }
-
-    public void setSenderAccountNumber(String senderAccountNumber) {
-        this.senderAccountNumber = senderAccountNumber;
-    }
-
-    public String getReceiverAccountNumber() {
-        return receiverAccountNumber;
-    }
-
-    public void setReceiverAccountNumber(String receiverAccountNumber) {
-        this.receiverAccountNumber = receiverAccountNumber;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 }

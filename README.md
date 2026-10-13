@@ -1,6 +1,6 @@
 [![CI/CD Pipeline](https://github.com/amunera66/lab12026p/actions/workflows/build.yml/badge.svg)](https://github.com/amunera66/lab12026p/actions/workflows/build.yml)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=coverage)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=bugs)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=coverage)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=bugs)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Known Vulnerabilities](https://snyk.io/test/github/amunera66/lab12026p/badge.svg)](https://snyk.io/test/github/amunera66/lab12026p)
 
 # banLOCOmbia
 
@@ -55,6 +55,28 @@ docker run -p 8080:8080   -e SPRING_PROFILES_ACTIVE=prod   -e DB_URL="jdbc:mysql
 ```
 
 El pipeline publica la imagen en Docker Hub como `<usuario>/lab12026p:latest` y `<usuario>/lab12026p:<sha>` en cada push a `main`.
+
+## Despliegue en la nube
+
+La API está desplegada en Render: **https://banlocombia-api.onrender.com** (por ejemplo `GET /api/customers`).
+La base de datos es **MySQL en Aiven**; las credenciales se pasan a Render como variables de entorno (`DB_URL`, `DB_USERNAME`, `DB_PASSWORD`).
+
+Flujo del pipeline ([build.yml](.github/workflows/build.yml)):
+
+```
+tests → SonarCloud → build JAR → Docker Hub → Render → smoke test
+```
+
+1. **tests**: pruebas JUnit con H2 en memoria.
+2. **SonarCloud**: análisis estático y cobertura (JaCoCo).
+3. **build JAR**: empaqueta `target/lab12026p.jar` y lo publica como artifact.
+4. **Docker Hub**: construye la imagen con ese jar y la publica (`latest` y `<sha>`).
+5. **Render**: dispara el deploy hook para que Render tome la nueva imagen.
+6. **smoke test**: espera el despliegue y verifica que `GET /api/customers` responda 200 en la nube.
+
+Se trabaja con **trunk-based development**: los cambios se hacen en ramas cortas `feature/**` que se integran a `main` por Pull Request.
+En las ramas `feature/**` (y en los PR hacia `main`) solo corre la parte de integración: tests, SonarCloud y build del JAR.
+La publicación en Docker Hub, el despliegue a Render y el smoke test solo ocurren cuando el cambio se fusiona a `main`.
 
 ## Pruebas
 

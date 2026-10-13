@@ -5,4 +5,4 @@ frontend
 .postman
 postman
 Claude outputs
-src/main/resources/application-local.properties
+/application-local.properties

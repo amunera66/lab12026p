@@ -20,9 +20,10 @@ src/
 │   ├── repository/                 # Acceso a datos (Spring Data JPA)
 │   ├── entity/  dto/  mapper/      # Modelo, DTOs y mapeo (MapStruct)
 │   └── config/                     # CORS
-├── main/resources/                 # application.properties (+ application-local.properties, no versionado)
+├── main/resources/                 # application.properties (versionado, sin secretos)
 └── test/                           # Pruebas JUnit 5 + Mockito + MockMvc (H2 en memoria)
 frontend/                           # Cliente web (React + Vite)
+application-local.properties        # Credenciales locales de MySQL (en la raíz, no versionado)
 .github/workflows/build.yml         # Pipeline de CI
 Dockerfile                          # Imagen de la API
 ```
@@ -32,9 +33,11 @@ Dockerfile                          # Imagen de la API
 1. Tener MySQL corriendo con una base `lab12026p`.
 2. Crear la configuración local a partir del ejemplo y poner tu contraseña:
    ```bash
-   cp src/main/resources/application-local.properties.example src/main/resources/application-local.properties
+   cp application-local.properties.example application-local.properties
    ```
-   `application-local.properties` está en `.gitignore`; nunca se sube al repositorio.
+   El archivo va en la **raíz del proyecto** (al lado del `pom.xml`), no en `src/main/resources`. Spring lo carga con
+   `spring.config.import=optional:file:./application-local.properties`, así que nunca queda dentro del jar ni de la imagen
+   Docker, y está en `.gitignore`, así que nunca se sube al repositorio.
 3. Levantar la API:
    ```bash
    ./mvnw spring-boot:run

@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, 'feature/**' ]
   pull_request:
     branches: [ main ]
 jobs:
@@ -94,3 +94,20 @@ jobs:
     steps:
       - name: Trigger Render deploy
         run: curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+
+  smoke-test:
+    name: Smoke test (Render)
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Esperar despliegue y verificar API en la nube
+        run: |
+          sleep 90
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" https://banlocombia-api.onrender.com/api/customers)
+            echo "Intento $i: HTTP $code"
+            if [ "$code" = "200" ]; then exit 0; fi
+            sleep 15
+          done
+          echo "La API no respondió 200" && exit 1

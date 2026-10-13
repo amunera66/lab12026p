@@ -1,4 +1,5 @@
-target
+target/*
+!target/lab12026p.jar
 frontend
 .git
 .postman

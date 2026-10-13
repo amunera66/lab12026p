@@ -43,6 +43,16 @@ Dockerfile                          # Imagen de la API
 
 En otros entornos (Docker, nube) la configuración se pasa por variables de entorno: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `PORT` y `SPRING_PROFILES_ACTIVE`.
 
+## Correr con Docker
+
+```bash
+./mvnw clean package -DskipTests
+docker build -t lab12026p .
+docker run -p 8080:8080   -e SPRING_PROFILES_ACTIVE=prod   -e DB_URL="jdbc:mysql://host.docker.internal:3306/lab12026p?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"   -e DB_USERNAME=root   -e DB_PASSWORD=tu_password   lab12026p
+```
+
+El pipeline publica la imagen en Docker Hub como `<usuario>/lab12026p:latest` y `<usuario>/lab12026p:<sha>` en cada push a `main`.
+
 ## Pruebas
 
 ```bash

@@ -1,0 +1,7 @@
+target
+frontend
+.git
+.postman
+postman
+Claude outputs
+src/main/resources/application-local.properties

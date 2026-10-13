@@ -1,5 +1,7 @@
 [![CI/CD Pipeline](https://github.com/amunera66/lab12026p/actions/workflows/build.yml/badge.svg)](https://github.com/amunera66/lab12026p/actions/workflows/build.yml)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=coverage)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=bugs)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=amunera66_lab12026p&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=amunera66_lab12026p)
+
 # banLOCOmbia
 
 API REST bancaria construida con Spring Boot 3.5 (Java 17) y MySQL. Permite:
